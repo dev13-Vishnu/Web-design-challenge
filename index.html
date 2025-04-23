@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Say No to Drugs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    /* Custom Styles */
+    :root {
+      --primary-color: #7209b7;
+      --secondary-color: #3a0ca3;
+      --accent-color: #f72585;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color)) !important;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .btn-help {
+      background: var(--accent-color);
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-help:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+    }
+
+    .hero {
+      background: linear-gradient(rgba(58, 12, 163, 0.7), rgba(114, 9, 183, 0.7)), url("../pexels-suju-2099737.jpg") center/cover no-repeat;
+      padding: 150px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(to bottom right, transparent 49%, white 50%);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .hero .lead {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-cta {
+      position: relative;
+      z-index: 2;
+    }
+
+    .info {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .card {
+      border-radius: 15px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .card-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .stats {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      position: relative;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 30%;
+      background: url('/api/placeholder/400/800') center/cover no-repeat;
+      opacity: 0.1;
+    }
+
+    .stats-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .stats h2:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .stats h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .stats p {
+      font-size: 1.1rem;
+      color: var(--dark-color);
+    }
+
+    .stat-card {
+      border-radius: 15px;
+      background: white;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--accent-color);
+    }
+
+    #get-help {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    #get-help h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+
+    #get-help h2:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    #get-help i {
+      color: var(--accent-color);
+    }
+
+    .quote-section {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '"';
+      position: absolute;
+      font-size: 20rem;
+      color: rgba(255,255,255,0.1);
+      top: -50px;
+      left: 30px;
+      font-family: 'Georgia', serif;
+    }
+
+    .blockquote {
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer {
+      background: var(--dark-color);
+      padding: 30px 0;
+    }
+
+    .social-links a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Blog section styles */
+    .blog-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .view-all {
+      color: var(--primary-color);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .view-all:hover {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .view-all i {
+      margin-left: 8px;
+      font-size: 0.9rem;
+    }
+
+    .blog-card {
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .blog-image {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .blog-meta {
+      display: flex;
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+
+    .blog-meta-item {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+    }
+
+    .blog-meta-item i {
+      margin-right: 5px;
+      font-size: 0.7rem;
+    }
+
+    .blog-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .blog-title:hover {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .blog-excerpt {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
+    }
+
+    .blog-link {
+      font-weight: 600;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .blog-link:hover {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .blog-link i {
+      margin-left: 5px;
+      font-size: 0.8rem;
+    }
+
+    /* Featured Story Section */
+    .featured-story {
+      padding: 80px 0;
+      background-color: var(--primary-color);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-story::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      background: url('/api/placeholder/600/800') center/cover no-repeat;
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.2;
+    }
+
+    .featured-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .featured-story h2 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .featured-story p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    /* Interactive elements */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+      40% {transform: translateY(-20px) translateX(-50%);}
+      60% {transform: translateY(-10px) translateX(-50%);}
+    }
+
+    .scroll-indicator i {
+      font-size: 2rem;
+    }
+    
+    .scroll-indicator span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+
+    /* Video section */
+    .video-section {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+      cursor: pointer;
+    }
+
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .play-button:hover {
+      transform: scale(1.1);
+      background-color: white;
+    }
+
+    .play-button i {
+      color: white;
+      font-size: 2rem;
+      margin-left: 5px;
+    }
+
+    .play-button:hover i {
+      color: var(--accent-color);
+    }
+
+    /* Count up animation for stats */
+    .count-up {
+      display: inline-block;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .testimonial-card {
+      padding: 30px;
+      border-radius: 15px;
+      background: white;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 4rem;
+      color: rgba(114, 9, 183, 0.1);
+      font-family: 'Georgia', serif;
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      padding-left: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonial-author {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+
+    .author-info h5 {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .author-info p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero .lead {
+        font-size: 1.2rem;
+      }
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .view-all {
+        margin-top: 10px;
+      }
+      .stats::before {
+        width: 100%;
+        opacity: 0.05;
+      }
+      .featured-story::after {
+        width: 100%;
+        clip-path: none;
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Drug Awareness</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#stories">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#stats">Facts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <a href="#get-help" class="btn btn-help">Get Help Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero text-white text-center">
+    <div class="container">
+      <h1 class="fade-in">Choose Life, Not Drugs</h1>
+      <p class="lead fade-in">Join our community fighting substance abuse and building better futures</p>
+      <div class="hero-cta">
+        <a href="#get-help" class="btn btn-help btn-lg">Find Resources</a>
+        <a href="#info" class="btn btn-outline-light btn-lg ms-3">Learn More</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="bi bi-chevron-down"></i>
+      <span>Scroll Down</span>
+    </div>
+  </header>
+
+  <!-- Featured Story Section -->
+  <section id="stories" class="featured-story">
+    <div class="container">
+      <div class="featured-content">
+        <h2>Real Stories, Real Impact</h2>
+        <p>Drug abuse doesn't just affect individuals—it impacts families, friends, and entire communities. Listen to survivors share their journeys of recovery and hope.</p>
+        <div class="ratio ratio-16x9">
+            <iframe 
+              src="https://www.youtube.com/watch?v=sjCtdyuLoXE&t" 
+              title="YouTube video"
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+        <a href="#testimonials" class="btn btn-outline-light">More Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section id="info" class="info py-5">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <div class="col-12">
+          <h2 class="mb-4">Understanding the Impact</h2>
+          <p class="lead text-muted">Substance abuse affects individuals, families, and communities. Knowledge is the first step toward prevention.</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <i class="bi bi-heart-pulse display-4 mb-4"></i>
+              <h5 class="card-title">Health Risks</h5>
+              <p class="card-text">Drugs can cause long-term damage to your physical health, mental wellbeing, and cognitive functions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <i class="bi bi-people display-4 mb-4"></i>
+              <h5 class="card-title">Social Impact</h5>
+              <p class="card-text">Substance abuse can tear families apart, destroy relationships, and devastate entire communities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <i class="bi bi-arrow-up-circle display-4 mb-4"></i>
+              <h5 class="card-title">Recovery Journey</h5>
+              <p class="card-text">Recovery is possible with proper support, professional help, and community resources.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats" class="stats py-5 text-center">
+    <div class="container stats-container">
+      <h2 class="mb-5">The Reality in Numbers</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="stat-card">
+            <h3><span class="count-up">70</span>%</h3>
+            <p>of drug users started before age 18</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="stat-card">
+            <h3><span class="count-up">500</span>K+</h3>
+            <p>drug-related deaths per year globally</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="stat-card">
+            <h3><span class="count-up">1</span> in <span class="count-up">10</span></h3>
+            <p>people suffer from substance use disorder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Latest From Our Blog</h2>
+        <a href="#" class="view-all">View All Articles <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card blog-card">
+            <img src="/api/placeholder/800/500" class="card-img-top blog-image" alt="Blog Post Image">
+            <div class="card-body">
+              <div class="blog-meta">
+                <div class="blog-meta-item">
+                  <i class="bi bi-calendar3"></i>
+                  <span>April 18, 2025</span>
+                </div>
+                <div class="blog-meta-item">
+                  <i class="bi bi-person"></i>
+                  <span>Dr. Sarah Johnson</span>
+                </div>
+              </div>
+              <h3 class="blog-title">
+                <a href="#">Warning Signs of Drug Use in Teenagers</a>
+              </h3>
+              <p class="blog-excerpt">Recognizing the early warning signs of drug use in teens can help parents intervene before addiction develops. Learn these critical indicators and how to respond effectively.</p>
+              <a href="#" class="blog-link">Read More <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card blog-card">
+            <img src="/api/placeholder/800/500" class="card-img-top blog-image" alt="Blog Post Image">
+            <div class="card-body">
+              <div class="blog-meta">
+                <div class="blog-meta-item">
+                  <i class="bi bi-calendar3"></i>
+                  <span>April 10, 2025</span>
+                </div>
+                <div class="blog-meta-item">
+                  <i class="bi bi-person"></i>
+                  <span>Alex Rivera</span>
+                </div>
+              </div>
+              <h3 class="blog-title">
+                <a href="#">The Role of Community Support in Recovery</a>
+              </h3>
+              <p class="blog-excerpt">Community support plays a vital role in sustainable recovery from addiction. Discover how community programs are making a difference in people's lives.</p>
+              <a href="#" class="blog-link">Read More <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card blog-card">
+            <img src="/api/placeholder/800/500" class="card-img-top blog-image" alt="Blog Post Image">
+            <div class="card-body">
+              <div class="blog-meta">
+                <div class="blog-meta-item">
+                  <i class="bi bi-calendar3"></i>
+                  <span>March 28, 2025</span>
+                </div>
+                <div class="blog-meta-item">
+                  <i class="bi bi-person"></i>
+                  <span>Counselor Maria Chen</span>
+                </div>
+              </div>
+              <h3 class="blog-title">
+                <a href="#">Modern Approaches to Addiction Treatment</a>
+              </h3>
+              <p class="blog-excerpt">Treatment approaches for addiction have evolved significantly in recent years. Learn about the latest evidence-based methods that are showing promising results.</p>
+              <a href="#" class="blog-link">Read More <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="text-center mb-5">Recovery Stories</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <p class="testimonial-content">After struggling with addiction for 8 years, I found the strength to seek help. The support from this community has been instrumental in my recovery journey. Today, I'm 3 years sober and helping others find their path.</p>
+            <div class="testimonial-author">
+              <img src="/api/placeholder/100/100" alt="Testimonial Author" class="author-avatar">
+              <div class="author-info">
+                <h5>Michael T.</h5>
+                <p>Recovery Advocate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <p class="testimonial-content">As a parent who almost lost her child to drug addiction, I can't stress enough how important early intervention is. The resources we found through this network saved my daughter's life. Now she's thriving in college.</p>
+            <div class="testimonial-author">
+              <img src="/api/placeholder/100/100" alt="Testimonial Author" class="author-avatar">
+              <div class="author-info">
+                <h5>Jennifer K.</h5>
+                <p>Parent & Support Group Leader</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="get-help" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Where to Get Help</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-telephone-fill display-4 mb-3"></i>
+              <h5 class="card-title">National Drug Helpline</h5>
+              <p class="card-text">Call <strong>1800-11-0031</strong> for free, confidential support 24/7.</p>
+              <a href="tel:18001100031" class="btn btn-outline-primary mt-3">Call Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-geo-alt-fill display-4 mb-3"></i>
+              <h5 class="card-title">Find a Rehab Center</h5>
+              <p class="card-text">Use our directory to locate a trusted rehabilitation center near you.</p>
+              <a href="https://www.google.com/search?q=find+a+rehab+center+near+me" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Search Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-chat-dots-fill display-4 mb-3"></i>
+              <h5 class="card-title">Talk to a Counselor</h5>
+              <p class="card-text">Speak with a trained counselor for guidance and emotional support.</p>
+              <a href="#" class="btn btn-outline-primary mt-3">Connect Online</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="quote-section text-white text-center py-5">
+    <div class="container">
+      <blockquote class="blockquote">
+        "The first step towards getting somewhere is to decide you're not going to stay where you are."
+      </blockquote>
+      <footer class="blockquote-footer text-white-50">J.P. Morgan</footer>
+    </div>
+  </section>
+      
+  <!-- Footer -->
+  <footer class="text-white text-center">
+    <div class="container">
+      <div class="social-links mb-4">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i>
